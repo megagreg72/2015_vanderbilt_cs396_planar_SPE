@@ -1,0 +1,21 @@
+model ./myZeroSumSolver/zeroSum.ampl.mod;
+data ./myZeroSumSolver/zeroSum.ampl.dat;
+option solver "./myZeroSumSolver/cplex";
+solve;
+printf "P1 expected utility: %1.2f\n", P1_reward;
+printf "P1 strategy:\n"; 
+for {a1 in 1..Rows}
+{
+  printf "%1.2f:\t", P1_Strategy[a1];
+  for {a2 in 1..Columns}
+  {
+    printf "%1.2f ", P1_Rewards[a1,a2];
+  }
+  printf "\n";
+}
+printf "\n";
+printf "P2:\t"; 
+for {a2 in 1..Columns}
+{
+  printf "%1.2f ", P2_Strategy[a2];
+}

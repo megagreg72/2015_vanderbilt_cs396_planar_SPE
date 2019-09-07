@@ -1,0 +1,19 @@
+model SOLVER_PATH/q4.ampl.mod;
+data SOLVER_PATH/zeroSum.ampl.dat;
+option solver "SOLVER_PATH/cplex";
+solve;
+printf "P1 expected utility: %1.2f\n", P1_reward;
+for {a1 in 1..Rows}
+{
+  for {a2 in 1..Columns}
+  {
+    printf "%1.2f ", P1_Rewards[a1,a2];
+  }
+  printf "\n";
+}
+printf "\n";
+printf "P2:\t"; 
+for {a2 in 1..Columns}
+{
+  printf "%1.2f ", P2_Strategy[a2];
+}
